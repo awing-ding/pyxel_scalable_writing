@@ -11,7 +11,7 @@ setup (
     author = "awing-ding",
     email = "awingding.win@gmail.com",
     classifiers = [
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 5 - Stable",
         "Intended Audience :: Developers",
         "Programming Language :: Python :: 3 ",
     ],
