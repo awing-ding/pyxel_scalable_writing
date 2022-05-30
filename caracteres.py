@@ -494,6 +494,7 @@ class Caracteres:
       a dictionnary that associate a char with its image equivalent
       """
 
+
       "1" : tuple_1,
       "2" : tuple_2,
       "3" : tuple_3,
