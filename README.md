@@ -11,7 +11,7 @@ To show your personnalised text, you must use the method parsing of class Charac
 
 `string` is the text you want to show us
 
-`x_depart` and `y_depart` is the top left position of your text
+`x_depart` and `y_depart` is the top left position coordinates of your text
 
 `unity_width` is the width of an unity of your image (like a pixel but bigger)
 
