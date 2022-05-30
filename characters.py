@@ -1,6 +1,6 @@
 import pyxel
 
-class Caracteres:
+class Characters:
     """define a images that correspond to character and use pyxel function to draw it"""
     
     tuple_0 = ( (0, 0, 0, 1, 1, 1, 1, 0, 0, 0),
@@ -541,7 +541,7 @@ class Caracteres:
     }   
 
 
-    def affichage(self, tuple_char, x_depart, y_depart, unity_width):
+    def affichage(self, tuple_char, x_depart, y_depart, unity_width, transparence = True):
         """
         tuple_char, the image in the dictionnary, x and y the top-left coordinate, unity width is the width of a unit must be strictely inferior to 21
         """
@@ -549,9 +549,11 @@ class Caracteres:
         for y in range(len(tuple_char)) :
             for x in range(len(tuple_char[y])) :
                 if tuple_char[y][x] :
-                    pyxel.blt(x_depart + x * 7, y_depart + y * 7, 0, 0, 0, unity_width, unity_width)
+                    pyxel.blt(x_depart + x * unity_width, y_depart + y * unity_width, 0, 0, 0, unity_width, unity_width)
+                elif transparence:
+                    pyxel.blt(x_depart + x * unity_width, y_depart + y * unity_width, 0, 20, 0, unity_width, unity_width)
     
-    def parsing(self, string, x_depart, y_depart, unity_width):
+    def parsing(self, string, x_depart, y_depart, unity_width, transparence = True):
       """from the string, parse it and draw the text"""
       for char in string:
         try:
@@ -559,4 +561,4 @@ class Caracteres:
         except KeyError:
           print("This character isn't supported")
         
-        self.affichage(self, tuple_char, x_depart, y_depart, unity_width)
+        self.affichage(self, tuple_char, x_depart, y_depart, unity_width, transparence)
