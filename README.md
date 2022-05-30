@@ -7,7 +7,7 @@ This module allow to write with a scaling text function
 
 To show your personnalised text, you must use the method parsing of class Character
 
-`Characters.parsing(string, x_depart, y_depart, unity_width)`
+`Characters.parsing(string, x_depart, y_depart, unity_width, transparence)`
 
 `string` is the text you want to show us
 
