@@ -16,3 +16,5 @@ To show your personnalised text, you must use the method parsing of class Charac
 `unity_width` is the width of an unity of your image (like a pixel but bigger)
 
 `transparence` is an optional element that is True by default, if you want to have your text on a black background, call it as False
+
+[on pip !](https://pypi.org/project/scalablewritingpyxel/)
