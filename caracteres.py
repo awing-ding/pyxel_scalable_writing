@@ -541,13 +541,22 @@ class Caracteres:
     }   
 
 
-    def affichage(tuple_char, x_depart, y_depart, unity_width):
+    def affichage(self, tuple_char, x_depart, y_depart, unity_width):
         """
-        tuple_char, the image in the dictionnary, x and y the top-left coordinate, unity width is the width of a unit
-        You must have a ressource file with a white square of the max width you'll use on x = 0 and y = 48
+        tuple_char, the image in the dictionnary, x and y the top-left coordinate, unity width is the width of a unit must be strictely inferior to 21
         """
-        pyxel.load('my_resource.pyxres', True, False, False, False)
+        pyxel.load('writing_module.pyxres', True, False, False, False)
         for y in range(len(tuple_char)) :
             for x in range(len(tuple_char[y])) :
                 if tuple_char[y][x] :
-                    pyxel.blt(x_depart + x * 7, y_depart + y * 7, 0, 48, 0, unity_width, unity_width)
+                    pyxel.blt(x_depart + x * 7, y_depart + y * 7, 0, 0, 0, unity_width, unity_width)
+    
+    def parsing(self, string, x_depart, y_depart, unity_width):
+      """from the string, parse it and draw the text"""
+      for char in string:
+        try:
+          tuple_char = self.character_reference[char.upper()]
+        except KeyError:
+          print("This character isn't supported")
+        
+        self.affichage(self, tuple_char, x_depart, y_depart, unity_width)
