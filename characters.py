@@ -1,10 +1,10 @@
 import pyxel
+import pyxel_writing_module_test.error.error as error
 
 class Characters:
     """define a images that correspond to character and use pyxel function to draw it"""
     
     tuple_0 = ( (0, 0, 0, 1, 1, 1, 1, 0, 0, 0),
-                (0, 0, 1, 0, 0, 0, 0, 1, 0, 0),
                 (0, 0, 1, 0, 0, 0, 0, 1, 0, 0),
                 (0, 0, 1, 0, 0, 0, 0, 1, 0, 0),
                 (0, 0, 1, 0, 0, 0, 0, 1, 0, 0),
@@ -101,7 +101,6 @@ class Characters:
                 (0, 0, 1, 0, 0, 0, 0, 1, 0, 0),
                 (0, 0, 1, 0, 0, 0, 0, 1, 0, 0),
                 (0, 0, 1, 0, 0, 0, 0, 1, 0, 0),
-                (0, 0, 1, 0, 0, 0, 0, 1, 0, 0),
                 (0, 0, 0, 1, 1, 1, 1, 0, 0, 0),
               ) 
     tuple_9 = ( (0, 0, 0, 0, 1, 1, 1, 0, 0, 0),
@@ -112,8 +111,8 @@ class Characters:
                 (0, 0, 0, 0, 1, 1, 1, 1, 0, 0),
                 (0, 0, 0, 0, 0, 0, 0, 1, 0, 0),
                 (0, 0, 0, 0, 0, 0, 0, 1, 0, 0),
-                (0, 0, 1, 0, 0, 0, 0, 1, 0, 0),
-                (0, 0, 0, 1, 1, 1, 1, 1, 0, 0),
+                (0, 0, 0, 1, 0, 0, 0, 1, 0, 0),
+                (0, 0, 0, 0, 1, 1, 1, 1, 0, 0),
               )
     tuple_A = ( (0, 0, 0, 0, 0, 1, 0, 0, 0, 0),
                 (0, 0, 0, 0, 1, 0, 1, 0, 0, 0),
@@ -494,7 +493,7 @@ class Characters:
       a dictionnary that associate a char with its image equivalent
       """
 
-
+      "\\" : tuple_vide,
       "1" : tuple_1,
       "2" : tuple_2,
       "3" : tuple_3,
@@ -540,8 +539,8 @@ class Characters:
       ";" : tuple_semicolon,
     }   
 
-
-    def affichage(self, tuple_char, x_depart, y_depart, unity_width, transparence = True):
+    @classmethod
+    def affichage(cls, tuple_char, x_depart, y_depart, unity_width = 5, transparence = True):
         """
         tuple_char, the image in the dictionnary, x and y the top-left coordinate, unity width is the width of a unit must be strictely inferior to 21
         """
@@ -550,15 +549,18 @@ class Characters:
             for x in range(len(tuple_char[y])) :
                 if tuple_char[y][x] :
                     pyxel.blt(x_depart + x * unity_width, y_depart + y * unity_width, 0, 0, 0, unity_width, unity_width)
-                elif transparence:
-                    pyxel.blt(x_depart + x * unity_width, y_depart + y * unity_width, 0, 20, 0, unity_width, unity_width)
+                elif not transparence:
+                    pyxel.blt(x_depart + x * unity_width, y_depart + y * unity_width, 0, 21, 0, unity_width, unity_width)
+        return x_depart + unity_width * len(tuple_char[1])
     
-    def parsing(self, string, x_depart, y_depart, unity_width, transparence = True):
+    @classmethod
+    def parsing(cls, string, x_depart, y_depart, unity_width = 5, transparence = True):
       """from the string, parse it and draw the text"""
+
       for char in string:
         try:
-          tuple_char = self.character_reference[char.upper()]
+          tuple_char = cls.character_reference[char.upper()]
         except KeyError:
-          print("This character isn't supported")
+          raise(error.CharacterNotSupportedFatalError("This character isn't supported yet: " + char))
         
-        self.affichage(self, tuple_char, x_depart, y_depart, unity_width, transparence)
+        x_depart = cls.affichage(tuple_char, x_depart, y_depart, unity_width, transparence)
