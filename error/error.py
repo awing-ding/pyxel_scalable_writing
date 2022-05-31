@@ -1,0 +1,2 @@
+class CharacterNotSupportedFatalError(Exception):
+    pass
