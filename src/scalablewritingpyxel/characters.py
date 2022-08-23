@@ -1,5 +1,5 @@
 import pyxel
-import pyxel_writing_module_test.error.error as error
+import error.error as error
 
 class Characters:
     """define a images that correspond to character and use pyxel function to draw it"""

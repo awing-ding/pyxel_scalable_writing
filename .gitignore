@@ -1,3 +1,5 @@
 dist/
 scalablewrtingpyxel.egg-info/
 scalablewritingpyxel.egg-info/
+bin/
+lib64
