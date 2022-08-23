@@ -1,5 +1,4 @@
 import pyxel
-import error.error as error
 
 class Characters:
     """define a images that correspond to character and use pyxel function to draw it"""
@@ -561,6 +560,10 @@ class Characters:
         try:
           tuple_char = cls.character_reference[char.upper()]
         except KeyError:
-          raise(error.CharacterNotSupportedFatalError("This character isn't supported yet: " + char))
+          raise(CharacterNotSupportedFatalError("This character isn't supported yet: " + char))
         
         x_depart = cls.affichage(tuple_char, x_depart, y_depart, unity_width, transparence)
+
+
+class CharacterNotSupportedFatalError(Exception):
+    pass
