@@ -560,10 +560,10 @@ class Characters:
         try:
           tuple_char = cls.character_reference[char.upper()]
         except KeyError:
-          raise(CharacterNotSupportedFatalError("This character isn't supported yet: " + char))
+          raise(_CharacterNotSupportedFatalError("This character isn't supported yet: " + char))
         
         x_depart = cls.affichage(tuple_char, x_depart, y_depart, unity_width, transparence)
 
 
-class CharacterNotSupportedFatalError(Exception):
+class _CharacterNotSupportedFatalError(Exception):
     pass

@@ -7,7 +7,7 @@ long_description = (here /'README.md').read_text(encoding="utf-8")
 
 setup (
     name = "scalablewritingpyxel",
-    version = "1.3.5",
+    version = "1.3.6",
     description = "A module that give a scalable text writing function for pyxel",
     long_description = long_description,
     long_description_content_type = "text/markdown",
